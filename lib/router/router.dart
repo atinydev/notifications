@@ -10,6 +10,10 @@ class AppRoutes {
       route: HomeScreen.routeName,
       screen: HomeScreen(),
     ),
+    _ScreenRoute(
+      route: MessageScreen.routeName,
+      screen: MessageScreen(),
+    ),
   ];
 
   static Map<String, Widget Function(BuildContext)> get getAppRoutes {
