@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:notifications/services/push_notifications_service.dart';
+import 'package:notifications/screens/messages_screen.dart';
+import 'package:notifications/services/services.dart';
 
 import 'router/router.dart';
 import 'theme/theme.dart';
@@ -16,7 +17,11 @@ class _NotificationsAppState extends State<NotificationsApp> {
   void initState() {
     super.initState();
     PushNotificationService.messageStream.listen((message) {
-      print('MyApp: $message');
+      NotificationsService.pushNamed(
+        MessageScreen.routeName,
+        arguments: message,
+      );
+      NotificationsService.showSnackBar(message);
     });
   }
 
@@ -29,6 +34,8 @@ class _NotificationsAppState extends State<NotificationsApp> {
       routes: AppRoutes.getAppRoutes,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      navigatorKey: NotificationsService.navigatorKey,
+      scaffoldMessengerKey: NotificationsService.messengerKey,
     );
   }
 }

@@ -16,7 +16,7 @@ class PushNotificationService {
     // Push Notifications
     await Firebase.initializeApp();
     token = await FirebaseMessaging.instance.getToken();
-    print('token $token');
+    // print('token $token');
 
     // Handlers
     FirebaseMessaging.onBackgroundMessage(_onBackgroundHandler);
@@ -28,20 +28,20 @@ class PushNotificationService {
 
   static Future<void> _onBackgroundHandler(RemoteMessage message) async {
     // print('onBackground Handler ${message.messageId}');
-    print(message.data);
-    _messageStreamController.add(message.notification?.body ?? 'No body');
+    // print(message.data);
+    _messageStreamController.add(message.data['product'] ?? 'No data');
   }
 
   static Future<void> _onMessageHandler(RemoteMessage message) async {
     // print('onMessage Handler  ${message.messageId}');
-    print(message.data);
-    _messageStreamController.add(message.notification?.body ?? 'No body');
+    // print(message.data);
+    _messageStreamController.add(message.data['product'] ?? 'No data');
   }
 
   static Future<void> _onMessageOpenApp(RemoteMessage message) async {
     // print('onMessageOpenApp Handler ${message.messageId}');
-    print(message.data);
-    _messageStreamController.add(message.notification?.body ?? 'No body');
+    // print(message.data);
+    _messageStreamController.add(message.data['product'] ?? 'No data');
   }
 
   static void closeStreams() {
