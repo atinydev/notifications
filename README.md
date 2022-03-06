@@ -1,4 +1,4 @@
-# Notifications
+# Push Notifications
 
 Simple app to learn Flutter
 
